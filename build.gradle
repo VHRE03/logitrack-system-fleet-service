@@ -22,14 +22,69 @@ ext {
 }
 
 dependencies {
+	// ==========================================
+	// DEPENDENCIAS DEL NÚCLEO DE SPRING BOOT
+	// ==========================================
+
+	// Proporciona integración con JPA (Hibernate) para interactuar con la base de datos relacional.
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+	// Configura la aplicación como un servicio web RESTful e incluye Apache Tomcat como servidor embebido.
 	implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+
+	// Proporciona el motor para procesar las anotaciones de validación de Jakarta (@NotNull, @NotBlank, etc.) en los DTOs.
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+	// ==========================================
+	// DOCUMENTACIÓN Y SWAGGER
+	// ==========================================
+
+	// Genera automáticamente la documentación OpenAPI 3 (Swagger) leyendo tus controladores y DTOs, e incluye la interfaz visual UI.
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.2'
+
+	// ==========================================
+	// ECOSISTEMA SPRING CLOUD (MICROSERVICIOS)
+	// ==========================================
+
+	// Implementa el patrón Circuit Breaker para evitar fallos en cascada cuando este servicio se comunique con otros y fallen.
 	implementation 'org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j'
+
+	// Cliente que permite a este microservicio registrarse dinámicamente en el discovery-service (Eureka Server).
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
+	// ==========================================
+	// BASE DE DATOS
+	// ==========================================
+
+	// Driver JDBC de PostgreSQL. Está en 'runtimeOnly' porque solo se necesita en tiempo de ejecución, no para compilar.
 	runtimeOnly 'org.postgresql:postgresql'
+
+	// ==========================================
+	// LOMBOK & MAPSTRUCT (Reducción de código y Mapeo)
+	// ==========================================
+
+	// Lombok: Evita escribir código repetitivo (Getters, Setters, Constructores, etc.)
+	compileOnly 'org.projectlombok:lombok:1.18.36'
+	annotationProcessor 'org.projectlombok:lombok:1.18.36'
+
+	// MapStruct: Genera automáticamente el código para convertir Entidades JPA a DTOs y viceversa.
+	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+
+	// Binding: Puente estrictamente necesario para que MapStruct pueda leer los Getters/Setters generados por Lombok durante la compilación.
+	annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
+
+	// ==========================================
+	// TESTING
+	// ==========================================
+
+	// Utilidades para crear pruebas unitarias e integración de la capa de persistencia (JPA).
 	testImplementation 'org.springframework.boot:spring-boot-starter-data-jpa-test'
+
+	// Utilidades para probar los controladores REST (MockMvc).
 	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+
+	// Motor necesario para descubrir y ejecutar las pruebas en JUnit 5.
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
 
