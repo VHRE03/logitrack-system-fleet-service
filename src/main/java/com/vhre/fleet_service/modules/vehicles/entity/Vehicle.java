@@ -18,7 +18,7 @@ import java.util.List;
 public class Vehicle extends BaseEntity {
 
     @Column(name = "license_plate", length = 20, unique = true)
-    private String license_plate;
+    private String licensePlate;
 
     @Column(length = 100)
     private String model;
