@@ -10,17 +10,12 @@ server:
 spring:
   application:
     name: fleet-service
-  
-  # Activates the development profile to merge configurations
-  profiles:
-    active: development
 
-  # Database connection template. 
-  # Sensitive data is commented out. Set these values in application-development.yaml.
+  # Actual database connection for the development environment
   datasource:
-    # url: jdbc:postgresql://<host>:<port>/<database_name>
-    # username: <your_db_username>
-    # password: <your_db_password>
+    url: jdbc:postgresql://localhost:5433/fleet_db
+    username: logitrack_admin
+    password: SuperSecretPassword123!
     driver-class-name: org.postgresql.Driver
   
   # JPA and Hibernate configuration for PostgreSQL
